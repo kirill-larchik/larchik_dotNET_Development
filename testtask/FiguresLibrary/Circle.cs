@@ -32,5 +32,16 @@ namespace FiguresLibrary
         {
             return Math.PI * Radius * Radius;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Circle circle &&
+                   Radius == circle.Radius;
+        }
+
+        public override int GetHashCode()
+        {
+            return 598075851 + Radius.GetHashCode();
+        }
     }
 }

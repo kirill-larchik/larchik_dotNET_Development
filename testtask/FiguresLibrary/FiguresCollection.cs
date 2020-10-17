@@ -119,5 +119,82 @@ namespace FiguresLibrary
                 }
             }
         }
+
+        /// <summary>
+        /// Returns the average perimeter of figures.
+        /// </summary>
+        /// <returns></returns>
+        public double GetAveragePerimeter()
+        {
+            double sum = 0;
+            foreach (IFigure figure in figures)
+                sum += figure.GetP();
+
+            return sum / Count;
+        }
+
+        /// <summary>
+        /// Returns the total square of figures.
+        /// </summary>
+        /// <returns></returns>
+        public double GetTotalSquare()
+        {
+            double sum = 0;
+            foreach (IFigure figure in figures)
+                sum += figure.GetS();
+
+            return sum;
+        }
+
+        /// <summary>
+        /// Returns the figure, which have max square.
+        /// </summary>
+        /// <returns></returns>
+        public IFigure GetMaxSquareFigure()
+        {
+            IFigure maxFigure = figures.FirstOrDefault();
+            foreach (IFigure figure in figures)
+            {
+                if (figure.GetS() > maxFigure.GetS())
+                    maxFigure = figure;
+            }
+
+            return maxFigure;
+        }
+
+
+        /// <summary>
+        /// Returns the figure type, which have max average perimeter;
+        /// </summary>
+        public Type GetFigureTypeByMaxAveragePerimeter()
+        {
+            Dictionary<Type, double> totalSums = new Dictionary<Type, double>();
+            
+            foreach (IFigure figure in figures)
+            {
+                switch (figure)
+                {
+                    case Rectangle r:
+                        AddToTotalSums(r, totalSums);
+                        break;
+                    case Circle c:
+                        AddToTotalSums(c, totalSums);
+                        break;
+                    case Square s:
+                        AddToTotalSums(s, totalSums);
+                        break;
+                }
+            }
+
+            return totalSums.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+        }
+
+        private void AddToTotalSums(IFigure figure, Dictionary<Type, double> totalSums)
+        {
+            if (!totalSums.ContainsKey(figure.GetType()))
+                totalSums.Add(figure.GetType(), figure.GetP());
+            else
+                totalSums[figure.GetType()] += figure.GetP();
+        }
     }
 }

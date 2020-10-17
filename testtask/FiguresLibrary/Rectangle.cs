@@ -35,5 +35,20 @@ namespace FiguresLibrary
         {
             return Length * Width;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Rectangle rectangle &&
+                   Length == rectangle.Length &&
+                   Width == rectangle.Width;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1135836612;
+            hashCode = hashCode * -1521134295 + Length.GetHashCode();
+            hashCode = hashCode * -1521134295 + Width.GetHashCode();
+            return hashCode;
+        }
     }
 }

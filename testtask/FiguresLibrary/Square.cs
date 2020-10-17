@@ -32,5 +32,16 @@ namespace FiguresLibrary
         {
             return Side * Side;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Square square &&
+                   Side == square.Side;
+        }
+
+        public override int GetHashCode()
+        {
+            return -1545931474 + Side.GetHashCode();
+        }
     }
 }
