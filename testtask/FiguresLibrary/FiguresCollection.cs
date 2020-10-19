@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -169,32 +170,43 @@ namespace FiguresLibrary
         public Type GetFigureTypeByMaxAveragePerimeter()
         {
             Dictionary<Type, double> totalSums = new Dictionary<Type, double>();
+            Dictionary<Type, int> totalCounts = new Dictionary<Type, int>();
             
             foreach (IFigure figure in figures)
             {
                 switch (figure)
                 {
                     case Rectangle r:
-                        AddToTotalSums(r, totalSums);
+                        AddToTotalSums(r, totalSums, totalCounts);
                         break;
                     case Circle c:
-                        AddToTotalSums(c, totalSums);
+                        AddToTotalSums(c, totalSums, totalCounts);
                         break;
                     case Square s:
-                        AddToTotalSums(s, totalSums);
+                        AddToTotalSums(s, totalSums, totalCounts);
                         break;
                 }
             }
 
-            return totalSums.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+            Dictionary<Type, double> totalAvgSums = new Dictionary<Type, double>();
+            foreach (KeyValuePair<Type, double> pair in totalSums)
+                totalAvgSums.Add(pair.Key, pair.Value / totalCounts[pair.Key]);
+
+            return totalAvgSums.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
         }
 
-        private void AddToTotalSums(IFigure figure, Dictionary<Type, double> totalSums)
+        private void AddToTotalSums(IFigure figure, Dictionary<Type, double> totalSums, Dictionary<Type, int> totalCounts)
         {
             if (!totalSums.ContainsKey(figure.GetType()))
+            {
                 totalSums.Add(figure.GetType(), figure.GetP());
+                totalCounts.Add(figure.GetType(), 0);
+            }
             else
+            {
                 totalSums[figure.GetType()] += figure.GetP();
+                totalCounts[figure.GetType()]++;
+            }
         }
     }
 }
