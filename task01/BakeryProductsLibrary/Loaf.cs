@@ -61,6 +61,11 @@ namespace BakeryProductsLibrary
             return cost;
         }
 
+        public Ingredient[] GetIngredients()
+        {
+            return _ingredients;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Loaf loaf &&

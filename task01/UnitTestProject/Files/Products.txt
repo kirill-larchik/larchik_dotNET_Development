@@ -1,13 +1,16 @@
 ﻿Bread "Bread1"
-	Flour 200 0,5 100
-	Water 100 1
+	Flour 200 0,5 150
+	Water 110 1
 Bread "Bread2"
-	Flour 300 1 100
-	Yeast 200 2 200
+	Flour 300 1,5 110
+	Yeast 230 2 220
 Loaf "Loaf1"
-	Flour 100 1 100
+	Flour 90 1 100
 	Water 100 2
 	Yeast 200 1 150
 Loaf "Loaf2"
 	Flour 200 1 100
-	Yeast 300 1,4 200
+	Yeast 320 1,4 200
+Bread "Bread3"
+	Flour 300 2 110
+	Yeast 230 2 220

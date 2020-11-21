@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IngredientsLibrary;
 
 namespace BakeryProductsLibrary
 {
@@ -22,5 +23,11 @@ namespace BakeryProductsLibrary
         /// </summary>
         /// <returns></returns>
         double GetCost();
+
+        /// <summary>
+        /// Returns ingredients of a bakery product.
+        /// </summary>
+        /// <returns></returns>
+        Ingredient[] GetIngredients();
     }
 }
