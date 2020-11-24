@@ -58,7 +58,7 @@ namespace BakeryProductsLibrary
             double cost = 0;
             for (int i = 0; i < _ingredients.Length; i++)
                 cost += _ingredients[i].Cost;
-            return cost;
+            return cost + Markup;
         }
 
         public Ingredient[] GetIngredients()

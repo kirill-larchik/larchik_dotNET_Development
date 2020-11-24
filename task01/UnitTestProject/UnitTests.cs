@@ -21,7 +21,7 @@ namespace UnitTestProject
 
         [DataTestMethod]
         [DataRow(SortState.Calaorie, 150, 330)]
-        [DataRow(SortState.Cost, 310, 530)]
+        [DataRow(SortState.Cost, 410, 630)]
         public void SortArray(SortState state, double min, double max)
         {
             BakeryProductsCollection collection = new BakeryProductsCollection(filePath);
