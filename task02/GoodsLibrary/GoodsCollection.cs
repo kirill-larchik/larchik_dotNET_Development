@@ -117,26 +117,9 @@ namespace GoodsLibrary
 
                     if (tokenType == JsonToken.EndObject)
                     {
-                        _goods.Add(GetGood(typeName, name, cost, markup, count));
+                        _goods.Add(Good.GetGood(typeName, name, cost, markup, count));
                     }
                 }
-            }
-            
-            
-        }
-
-        private Good GetGood(string typeName, string name, double cost, double markup, int count)
-        {
-            switch (typeName)
-            {
-                case nameof(Food):
-                    return new Food(name, cost, markup, count);
-                case nameof(Furniture):
-                    return new Furniture(name, cost, markup, count);
-                case nameof(Material):
-                    return new Material(name, cost, markup, count);
-                default:
-                    return null;
             }
         }
     }

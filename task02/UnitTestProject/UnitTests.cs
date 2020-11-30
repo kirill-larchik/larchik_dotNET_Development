@@ -4,6 +4,7 @@ using GoodsLibrary;
 using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using GoodsExceptionLibrary;
 
 namespace UnitTestProject
 {
@@ -74,6 +75,70 @@ namespace UnitTestProject
             List<Good> actual = actualCollection.GetGoods();
 
             CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(100, 20, 10, 200, 10, 15)]
+        [DataRow(110, 21, 11, 201, 10, 15)]
+        [DataRow(120, 22, 13, 204, 17, 11)]
+        public void Plus_Foods(double leftCost, double leftMarkup, int leftCount, int rightCost, double rightMarkup, int rightCount)
+        {
+            double cost = (leftCost * leftCount + rightCost * rightCount) / (leftCount + rightCount);
+            double markup = (leftMarkup * leftCount + rightMarkup * rightCount) / (leftCount + rightCount);
+            int count = leftCount + rightCount;
+            Food expected = new Food("food", cost, markup, count);
+
+            Food leftFood = new Food("food", leftCost, leftMarkup, leftCount);
+            Food rightFood = new Food("food", rightCost, rightMarkup, rightCount);
+            Good actual = leftFood + rightFood;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(23, 12, 11)]
+        [DataRow(54, 2, 52)]
+        [DataRow(4, 3, 1)]
+        public void Minus_Materials(int leftCount, int rightCount, int expected)
+        {
+            Material material = new Material("material", 1, 1, leftCount);
+
+            Good actual = material - rightCount;
+
+            Assert.AreEqual(expected, actual.Count);
+        }
+
+        [TestMethod()]
+        [DataRow(100, 20, 10, 200, 10, 15)]
+        [DataRow(110, 21, 11, 201, 10, 15)]
+        [DataRow(120, 22, 13, 204, 17, 11)]
+        [ExpectedException(typeof(DifferentGoodsException))]
+        public void Plus_GetException(double leftCost, double leftMarkup, int leftCount, int rightCost, double rightMarkup, int rightCount)
+        {
+            double cost = (leftCost * leftCount + rightCost * rightCount) / (leftCount + rightCount);
+            double markup = (leftMarkup * leftCount + rightMarkup * rightCount) / (leftCount + rightCount);
+            int count = leftCount + rightCount;
+            Food expected = new Food("food", cost, markup, count);
+
+            Food leftFood = new Food("food", leftCost, leftMarkup, leftCount);
+            Material material = new Material("material", rightCost, rightMarkup, rightCount);
+            Good actual = leftFood + material;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(23, 25, 11)]
+        [DataRow(54, 100, 52)]
+        [DataRow(4, 7, 1)]
+        [ExpectedException(typeof(GoodNegativeCountException))]
+        public void Minus_GetException(int leftCount, int rightCount, int expected)
+        {
+            Material material = new Material("material", 1, 1, leftCount);
+
+            Good actual = material - rightCount;
+
+            Assert.AreEqual(expected, actual.Count);
         }
     }
 }

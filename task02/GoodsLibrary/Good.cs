@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GoodsExceptionLibrary;
 
 namespace GoodsLibrary
 {
@@ -67,6 +68,68 @@ namespace GoodsLibrary
         public double GetTotalCost()
         {
             return (Cost + Markup) * Count;
+        }
+
+        /// <summary>
+        /// Operation plus for goods.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static Good operator +(Good left, Good right)
+        {
+            if (left.GetType() == right.GetType() && left.Name == right.Name)
+            {
+                double cost = (left.Cost * left.Count + right.Cost * right.Count) / (left.Count + right.Count);
+                double markup = (left.Markup * left.Count + right.Markup * right.Count) / (left.Count + right.Count);
+                int count = left.Count + right.Count;
+
+                return GetGood(left.GetType().Name, left.Name, cost, markup, count);
+            }
+            else
+                throw new DifferentGoodsException();
+        }
+
+        /// <summary>
+        /// Decrease count of good by number.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public static Good operator -(Good left, int right)
+        {
+            if (left.Count > right)
+            {
+                int count = left.Count - right;
+                return GetGood(left.GetType().Name, left.Name, left.Cost, left.Markup, count);
+            }
+            else
+                throw new GoodNegativeCountException();
+        }
+
+        /// <summary>
+        /// Returns good by type name.
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <param name="name"></param>
+        /// <param name="cost"></param>
+        /// <param name="markup"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+
+        public static Good GetGood(string typeName, string name, double cost, double markup, int count)
+        {
+            switch (typeName)
+            {
+                case nameof(Food):
+                    return new Food(name, cost, markup, count);
+                case nameof(Furniture):
+                    return new Furniture(name, cost, markup, count);
+                case nameof(Material):
+                    return new Material(name, cost, markup, count);
+                default:
+                    return null;
+            }
         }
 
         public override bool Equals(object obj)

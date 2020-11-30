@@ -81,5 +81,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoodsExceptionLibrary\GoodsExceptionLibrary.csproj">
+      <Project>{fe086799-079c-4ab8-8b6f-bf15dc6a553c}</Project>
+      <Name>GoodsExceptionLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

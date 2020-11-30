@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoodsExceptionLibrary\GoodsExceptionLibrary.csproj">
+      <Project>{fe086799-079c-4ab8-8b6f-bf15dc6a553c}</Project>
+      <Name>GoodsExceptionLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoodsLibrary\GoodsLibrary.csproj">
       <Project>{979007cf-2107-4735-b8f0-cd2412c40dd7}</Project>
       <Name>GoodsLibrary</Name>
