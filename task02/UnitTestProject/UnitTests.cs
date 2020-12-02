@@ -140,5 +140,41 @@ namespace UnitTestProject
 
             Assert.AreEqual(expected, actual.Count);
         }
+
+        [DataTestMethod]
+        [DataRow(100, 10, 1, 11000)]
+        [DataRow(200, 20, 2, 44000)]
+        [DataRow(300, 30, 3, 99000)]
+        public void ConvertToInt(double cost, double markup, int count, double expected)
+        {
+            Food food = new Food
+            {
+                Cost = cost,
+                Markup = markup,
+                Count = count
+            };
+
+            int actual = (int)food;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [DataTestMethod]
+        [DataRow(100, 10, 1, 110)]
+        [DataRow(200, 20, 2, 440)]
+        [DataRow(300, 30, 3, 990)]
+        public void ConvertToDouble(double cost, double markup, int count, double expected)
+        {
+            Food food = new Food
+            {
+                Cost = cost,
+                Markup = markup,
+                Count = count
+            };
+
+            double actual = (double)food;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

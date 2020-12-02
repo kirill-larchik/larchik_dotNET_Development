@@ -108,6 +108,35 @@ namespace GoodsLibrary
         }
 
         /// <summary>
+        /// Convert good to another good.
+        /// </summary>
+        /// <param name="inputGood"></param>
+        /// <param name="outputType"></param>
+        /// <returns></returns>
+        public static Good ConvertToAnotherType(Good inputGood, Type outputType)
+        {
+            return GetGood(outputType.Name, inputGood.Name, inputGood.Cost, inputGood.Markup, inputGood.Count);
+        }
+
+        /// <summary>
+        /// Returns cost in kocpecks.
+        /// </summary>
+        /// <param name="good"></param>
+        public static explicit operator int(Good good)
+        {
+            return (int)good.GetTotalCost() * 100;
+        }
+
+        /// <summary>
+        /// Returns cost.
+        /// </summary>
+        /// <param name="good"></param>
+        public static explicit operator double(Good good)
+        {
+            return good.GetTotalCost();
+        }
+
+        /// <summary>
         /// Returns good by type name.
         /// </summary>
         /// <param name="typeName"></param>
@@ -116,7 +145,6 @@ namespace GoodsLibrary
         /// <param name="markup"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-
         public static Good GetGood(string typeName, string name, double cost, double markup, int count)
         {
             switch (typeName)
