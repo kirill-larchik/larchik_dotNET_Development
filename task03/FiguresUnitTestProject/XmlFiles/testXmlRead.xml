@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<figures>
+    <figure material="Paper" form="Rectangle">
+        <length>10</length>
+        <width>5</width>
+    </figure>
+    <figure material="Film" form="Rectangle">
+        <length>6</length>
+        <width>2</width>
+    </figure>
+    <figure material="Paper" form="Circle">
+        <radius>6</radius>
+    </figure>
+    <figure material="Film" form="Circle">
+        <radius>3</radius>
+    </figure>
+    <figure material="Plastic" form="Circle">
+	    <radius>3</radius>
+    </figure>
+	<figure material="Plastic" form="Rectangle">
+		<length>10</length>
+		<width>5</width>
+	</figure>
+</figures>
