@@ -1,0 +1,27 @@
+﻿<?xml version="1.0"?>
+<BinaryTreeOfint xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/BinaryTreeLibrary" z:Id="1">
+  <Value>1</Value>
+  <leftTree i:nil="true"/>
+  <parentTree i:nil="true"/>
+  <rightTree z:Id="2">
+    <Value>2</Value>
+    <leftTree i:nil="true"/>
+    <parentTree i:nil="true" z:Ref="1"/>
+    <rightTree z:Id="3">
+      <Value>3</Value>
+      <leftTree i:nil="true"/>
+      <parentTree i:nil="true" z:Ref="2"/>
+      <rightTree z:Id="4">
+        <Value>4</Value>
+        <leftTree i:nil="true"/>
+        <parentTree i:nil="true" z:Ref="3"/>
+        <rightTree z:Id="5">
+          <Value>5</Value>
+          <leftTree i:nil="true"/>
+          <parentTree i:nil="true" z:Ref="4"/>
+          <rightTree i:nil="true"/>
+        </rightTree>
+      </rightTree>
+    </rightTree>
+  </rightTree>
+</BinaryTreeOfint>
