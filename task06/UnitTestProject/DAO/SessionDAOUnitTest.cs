@@ -13,7 +13,7 @@ namespace UnitTestProject.DAO
         [TestMethod]
         public void GetAllSessions()
         {
-            int expected = 5000;
+            int expected = 500;
             SqlServerDAOFactory sqlServerDAOFactory = new SqlServerDAOFactory();
             ISessionDAO sessionDAO = sqlServerDAOFactory.GetSessionDAO();
             int actual = sessionDAO.GetAllSessions().Count;
@@ -22,8 +22,9 @@ namespace UnitTestProject.DAO
         }
 
         [DataTestMethod]
-        [DataRow(5)]
-        [DataRow(10)]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
         public void GetSessionById(int id)
         {
             Session expected = new Session
@@ -67,9 +68,9 @@ namespace UnitTestProject.DAO
         }
 
         [DataTestMethod]
-        [DataRow(2, 7)]
-        [DataRow(3, 7)]
         [DataRow(4, 7)]
+        [DataRow(5, 7)]
+        [DataRow(6, 7)]
         public void UpdateSession(int id, int numberOfSession)
         {
             DAOFactory sqlServerDAOFactory = new SqlServerDAOFactory();

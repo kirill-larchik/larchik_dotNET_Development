@@ -13,7 +13,7 @@ namespace UnitTestProject.DAO
         [TestMethod]
         public void GetAllGroups()
         {
-            int expected = 100;
+            int expected = 50;
 
             SqlServerDAOFactory sqlServerDAOFactory = new SqlServerDAOFactory();
             IGroupDAO groupDAO = sqlServerDAOFactory.GetGroupDAO();
@@ -24,8 +24,8 @@ namespace UnitTestProject.DAO
 
         [DataTestMethod]
         [DataRow(1, "group1")]
-        [DataRow(10, "group10")]
-        [DataRow(100, "group100")]
+        [DataRow(2, "group2")]
+        [DataRow(3, "group3")]
         public void GetGroupById(int id, string name)
         {
             Group expected = new Group
@@ -70,9 +70,9 @@ namespace UnitTestProject.DAO
         }
 
         [DataTestMethod]
-        [DataRow(3, "updGroup1")]
-        [DataRow(4, "updGroup2")]
-        [DataRow(6, "updGroup3")]
+        [DataRow(4, "updGroup4")]
+        [DataRow(5, "updGroup5")]
+        [DataRow(6, "updGroup6")]
         public void UpdateGroup(int id, string name)
         {
             DAOFactory sqlServerDAOFactory = new SqlServerDAOFactory();
