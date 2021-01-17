@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace StudentSessionReportsLibrary.Reports.Objects
 {
+    /// <summary>
+    /// Describing a session report of student with average mark.
+    /// </summary>
     public class SessionReport
     {
         public string FullName { get; set; }

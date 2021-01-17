@@ -9,10 +9,16 @@ using System.Threading.Tasks;
 
 namespace StudentSessionReportsLibrary.DAO.DAOFactory
 {
+    /// <summary>
+    /// A DAO factory for MS-SQLServer
+    /// </summary>
     public class SqlServerDAOFactory : DAOFactory
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Init a DAO factory for MS SQL Server.
+        /// </summary>
         public SqlServerDAOFactory()
         {
             _connectionString = ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString();

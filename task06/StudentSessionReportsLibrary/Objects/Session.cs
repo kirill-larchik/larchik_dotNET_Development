@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace StudentSessionReportsLibrary.Objects
 {
+    /// <summary>
+    /// Session of a student
+    /// </summary>
     public class Session : Student
     {
         public int SessionId { get; set; }

@@ -12,6 +12,9 @@ namespace StudentSessionReportsLibrary.Objects
         Female
     }
 
+    /// <summary>
+    /// A studennt of concrete group.
+    /// </summary>
     public class Student : Group
     {
         public int StudentId { get; set; }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace StudentSessionReportsLibrary.Reports.Objects
 {
+    /// <summary>
+    /// Describing summary marks for each group.
+    /// </summary>
     public class SummaryMark
     {
         public string Group { get; set; }

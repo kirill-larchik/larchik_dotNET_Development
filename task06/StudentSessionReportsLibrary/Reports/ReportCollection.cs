@@ -40,17 +40,34 @@ namespace StudentSessionReportsLibrary.Reports
         BirthdayDesc
     }
 
-
+    /// <summary>
+    /// Contains all session reports.
+    /// </summary>
     public class ReportCollection
     {
         private Dictionary<int, List<SummaryMark>> _summaryMarks;
         private Dictionary<int, List<SessionReport>> _sessionReports;
         private Dictionary<string, List<ExpelledStudent>> _expelledStudents;
 
+        /// <summary>
+        /// Returns session reports collection.
+        /// </summary>
         public Dictionary<int, List<SessionReport>> GetSessionReports { get { return _sessionReports; } }
+
+        /// <summary>
+        /// Returns summary marks collection.
+        /// </summary>
         public Dictionary<int, List<SummaryMark>> GetSummaryMark { get { return _summaryMarks; } }
+
+        /// <summary>
+        /// Returns expelled students collection.
+        /// </summary>
         public Dictionary<string, List<ExpelledStudent>> GetExpelledStudents { get { return _expelledStudents; } }
 
+        /// <summary>
+        /// Inits all reports by session results.
+        /// </summary>
+        /// <param name="sessionResults"></param>
         public ReportCollection(List<SessionResult> sessionResults)
         {
             SetSessionReports(sessionResults);
@@ -58,21 +75,37 @@ namespace StudentSessionReportsLibrary.Reports
             SetExpelledStudents(sessionResults);
         }
 
+        /// <summary>
+        /// Updates session report.
+        /// </summary>
+        /// <param name="sessionResults"></param>
         public void SetSessionReports(List<SessionResult> sessionResults)
         {
             _sessionReports = sessionResults.GroupBy(s => s.NumberOfSession).ToDictionary(s => s.Key, s => s.GroupBy(g => new { FullName = g.LastName + " " + g.FirstName + " " + g.MiddleName, Group = g.GroupName }).Select(x => new SessionReport { FullName = x.Key.FullName, Group = x.Key.Group, AverageMark = x.Average(m => m.Mark) }).ToList()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
         }
 
+        /// <summary>
+        /// Updates summary marks report.
+        /// </summary>
+        /// <param name="sessionResults"></param>
         public void SetSummaryMarks(List<SessionResult> sessionResults)
         {
             _summaryMarks = sessionResults.GroupBy(s => s.NumberOfSession).ToDictionary(s => s.Key, s => s.GroupBy(g => g.GroupName).Select(g => new SummaryMark { Group = g.Key, MinimalMark = g.Min(q => q.Mark), MaximumMark = g.Max(m => m.Mark), AverageMark = g.Average(e => e.Mark) }).ToList()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
         }
 
+        /// <summary>
+        /// Updates expelled students report.
+        /// </summary>
+        /// <param name="sessionResults"></param>
         public void SetExpelledStudents(List<SessionResult> sessionResults)
         {
             _expelledStudents = sessionResults.GroupBy(s => s.GroupName).ToDictionary(s => s.Key, s => s.Where(g => g.Mark < 4).Select(g => new ExpelledStudent { FullName = g.LastName + " " + g.FirstName + " " + g.MiddleName, Gender = g.Gender, Birthday = g.Birthday } ).Distinct().ToList()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
         }
 
+        /// <summary>
+        /// Sorts session reports collection.
+        /// </summary>
+        /// <param name="sortState"></param>
         public void SortSessionReports(SessionResultSortState sortState)
         {
             var keys = _sessionReports.Keys.ToArray();
@@ -93,6 +126,10 @@ namespace StudentSessionReportsLibrary.Reports
             }
         }
 
+        /// <summary>
+        /// Sorts summary marks collection.
+        /// </summary>
+        /// <param name="sortState"></param>
         public void SortSummaryMarks(SummaryMarkSortState sortState)
         {
             var keys = _sessionReports.Keys.ToArray();
@@ -117,6 +154,10 @@ namespace StudentSessionReportsLibrary.Reports
             }
         }
 
+        /// <summary>
+        /// Sorts expelled students collection.
+        /// </summary>
+        /// <param name="sortState"></param>
         public void SortExpelledStudents(ExpelledStudentSortState sortState)
         {
             var keys = _expelledStudents.Keys.ToArray();

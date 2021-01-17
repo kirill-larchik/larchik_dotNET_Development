@@ -7,8 +7,16 @@ using System.Linq;
 
 namespace StudentSessionReportsLibrary.Excel
 {
+    /// <summary>
+    /// Descriving methods for saving reports to exel format.
+    /// </summary>
     public static class ExcelReport
     {
+        /// <summary>
+        /// Save summary marks report to excel format. 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="summaryMarks"></param>
         public static void SaveSummaryMarkToFile(string filePath, Dictionary<int, List<SummaryMark>> summaryMarks)
         {
             Microsoft.Office.Interop.Excel.Application excel;
@@ -68,6 +76,11 @@ namespace StudentSessionReportsLibrary.Excel
             }
         }
 
+        /// <summary>
+        /// Save session results report to excel format. 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="sessionReports"></param>
         public static void SaveSessionResultsToFile(string filePath, Dictionary<int, List<SessionReport>> sessionReports)
         {
             Microsoft.Office.Interop.Excel.Application excel;

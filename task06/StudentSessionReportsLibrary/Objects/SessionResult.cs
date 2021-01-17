@@ -12,6 +12,9 @@ namespace StudentSessionReportsLibrary.Objects
         Test
     }
 
+    /// <summary>
+    /// Session results of a student for concrete session.
+    /// </summary>
     public class SessionResult : Session
     { 
         public int SessionResultId { get; set; }

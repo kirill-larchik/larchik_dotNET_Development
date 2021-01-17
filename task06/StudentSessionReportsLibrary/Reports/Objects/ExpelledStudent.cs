@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace StudentSessionReportsLibrary.Reports.Objects
 {
+    /// <summary>
+    /// A expelled student.
+    /// </summary>
     public class ExpelledStudent
     {
         public string FullName { get; set; }
