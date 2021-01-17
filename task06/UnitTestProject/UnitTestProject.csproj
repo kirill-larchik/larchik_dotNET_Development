@@ -55,6 +55,7 @@
     <Compile Include="DAO\StudentDAOUnitTest.cs" />
     <Compile Include="Excel\ExcelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

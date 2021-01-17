@@ -14,9 +14,18 @@ namespace StudentSessionReportsLibrary.DAO.SqlServer
         private readonly string _connectionString;
         private const int limit = 1;
 
-        public SqlServerGroupDAO(string connectionString)
+        private static SqlServerGroupDAO instance;
+
+        private SqlServerGroupDAO(string connectionString)
         {
             _connectionString = connectionString;
+        }
+
+        public static SqlServerGroupDAO GetInstance(string connectionString)
+        {
+            if (instance == null)
+                instance = new SqlServerGroupDAO(connectionString);
+            return instance;
         }
 
         public bool DeleteGroup(int id)

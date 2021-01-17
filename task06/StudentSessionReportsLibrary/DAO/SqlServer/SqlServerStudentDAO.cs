@@ -14,9 +14,18 @@ namespace StudentSessionReportsLibrary.DAO.SqlServer
         private readonly string _connectionString;
         private const int limit = 1;
 
-        public SqlServerStudentDAO(string connectionString)
+        private static SqlServerStudentDAO instance;
+
+        private SqlServerStudentDAO(string connectionString)
         {
             _connectionString = connectionString;
+        }
+
+        public static SqlServerStudentDAO GetInstance(string connectionString)
+        {
+            if (instance == null)
+                instance = new SqlServerStudentDAO(connectionString);
+            return instance;
         }
 
         public bool DeleteStudent(int id)

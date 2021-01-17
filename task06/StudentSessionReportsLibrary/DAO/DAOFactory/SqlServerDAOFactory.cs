@@ -20,22 +20,22 @@ namespace StudentSessionReportsLibrary.DAO.DAOFactory
 
         public override IGroupDAO GetGroupDAO()
         {
-            return new SqlServerGroupDAO(_connectionString);
+            return SqlServerGroupDAO.GetInstance(_connectionString);
         }
 
         public override ISessionDAO GetSessionDAO()
         {
-            return new SqlServerSessionDAO(_connectionString);
+            return SqlServerSessionDAO.GetInstance(_connectionString);
         }
 
         public override ISessionResultDAO GetSessionResultDAO()
         {
-            return new SqlServerSessionResultDAO(_connectionString);
+            return SqlServerSessionResultDAO.GetInstance(_connectionString);
         }
 
         public override IStudentDAO GetStudentDAO()
         {
-            return new SqlServerStudentDAO(_connectionString);
+            return SqlServerStudentDAO.GetInstance(_connectionString);
         }
     }
 }
