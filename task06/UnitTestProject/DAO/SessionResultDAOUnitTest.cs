@@ -7,7 +7,7 @@ using System;
 namespace UnitTestProject.DAO
 {
     [TestClass]
-    public class SessinResultDAOUnitTest
+    public class SessionResultDAOUnitTest
     {
         [TestMethod]
         public void GetAllSessionResults()

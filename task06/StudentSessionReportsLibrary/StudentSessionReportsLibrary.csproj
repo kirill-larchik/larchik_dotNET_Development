@@ -71,12 +71,15 @@
     <Compile Include="DAO\SqlServer\SqlServerSessionDAO.cs" />
     <Compile Include="DAO\SqlServer\SqlServerSessionResultDAO.cs" />
     <Compile Include="DAO\SqlServer\SqlServerStudentDAO.cs" />
-    <Compile Include="Excel\ExcelReport.cs" />
+    <Compile Include="Reports\ExcelReport.cs" />
     <Compile Include="Objects\Group.cs" />
     <Compile Include="Objects\Session.cs" />
     <Compile Include="Objects\SessionResult.cs" />
     <Compile Include="Objects\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Objects\SessionReport.cs" />
+    <Compile Include="Reports\Objects\SummaryMark.cs" />
+    <Compile Include="Reports\ReportCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

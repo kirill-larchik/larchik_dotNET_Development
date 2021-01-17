@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="DAO\GroupDAOUnitTest.cs" />
     <Compile Include="DAO\SessionDAOUnitTest.cs" />
-    <Compile Include="DAO\SessinResultDAOUnitTest.cs" />
+    <Compile Include="DAO\SessionResultDAOUnitTest.cs" />
     <Compile Include="DAO\StudentDAOUnitTest.cs" />
     <Compile Include="Excel\ExcelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
