@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudentSessionReportsLINQLibrary.DAO.DAOFactory;
 using StudentSessionReportsLINQLibrary.DAO.Interfaces;
-using StudentSessionReportsLINQLibrary.Excel;
+using StudentSessionReportsLINQLibrary.Reports.Excel;
 using StudentSessionReportsLINQLibrary.Reports;
 using StudentSessionReportsLINQLibrary.Data;
 using System.IO;
@@ -22,24 +22,42 @@ namespace UnitTestProject.Excel
 
             SummaryMarkReportCollection summaryMarkReportCollection = new SummaryMarkReportCollection(context);
             summaryMarkReportCollection.GenerateReports();
-            summaryMarkReportCollection.SortSummaryMarks(sortState);
+            summaryMarkReportCollection.SortReports(sortState);
 
-            ExcelReport.SaveSummaryMarkToFile(Directory.GetCurrentDirectory() + filePath, summaryMarkReportCollection.GetReports);
+            SummaryMarkReportExcel excelReport = new SummaryMarkReportExcel(Directory.GetCurrentDirectory() + filePath);
+            excelReport.SaveToFile(summaryMarkReportCollection.GetReports);
         }
 
         [DataTestMethod]
-        [DataRow(@"\SessionResultsByFullNameAsc.xlsx", SessionResultSortState.FullNameAsc)]
-        [DataRow(@"\SessionResultsByAverageMarkDesc.xlsx", SessionResultSortState.AverageMarkDesc)]
-        public void SaveSessionResultsToFile(string filePath, SessionResultSortState sortState)
+        [DataRow(@"\AverageGroupMarkByFullNameAsc.xlsx", AverageGroupMarkSortState.FullNameAsc)]
+        [DataRow(@"\AverageGroupMarkByAverageMarkDesc.xlsx", AverageGroupMarkSortState.AverageMarkDesc)]
+        public void SaveAverageGroupMarkReportsToFile(string filePath, AverageGroupMarkSortState sortState)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString();
             StudentSessionReportsContext context = new StudentSessionReportsContext(connectionString);
 
-            SessionResultReportCollection collection = new SessionResultReportCollection(context);
+            AverageGroupMarkReportCollection collection = new AverageGroupMarkReportCollection(context);
             collection.GenerateReports();
-            collection.SortSessionReports(sortState);
+            collection.SortReports(sortState);
 
-            ExcelReport.SaveSessionResultsToFile(Directory.GetCurrentDirectory() + filePath, collection.GetReports);
+            AverageGroupMarkReportExcel excelReport = new AverageGroupMarkReportExcel(Directory.GetCurrentDirectory() + filePath);
+            excelReport.SaveToFile(collection.GetReports);
+        }
+
+        [DataTestMethod]
+        [DataRow(@"\AverageMarkDynamicBySubjectNameAsc.xlsx", AverageMarkDynamicSortState.SubjectNameAsc)]
+        [DataRow(@"\AverageMarkDynamicBySubjectNameDesc.xlsx", AverageMarkDynamicSortState.SubjectNameDesc)]
+        public void SaveAverageMarkDynamickReportsToFile(string filePath, AverageMarkDynamicSortState sortState)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString();
+            StudentSessionReportsContext context = new StudentSessionReportsContext(connectionString);
+
+            AverageMarkDynamicReportCollection collection = new AverageMarkDynamicReportCollection(context);
+            collection.GenerateReports();
+            collection.SortReports(sortState);
+
+            AverageMarkDynamicReportExcel excelReport = new AverageMarkDynamicReportExcel(Directory.GetCurrentDirectory() + filePath);
+            excelReport.SaveToFile(collection.GetReports);
         }
     }
 }

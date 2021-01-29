@@ -54,7 +54,7 @@ namespace StudentSessionReportsLINQLibrary.Reports
         /// Sorts the summary marks collection.
         /// </summary>
         /// <param name="sortState"></param>
-        public void SortSummaryMarks(SummaryMarkSortState sortState)
+        public void SortReports(SummaryMarkSortState sortState)
         {
             var keys = _reports.Keys.ToArray();
             foreach (var key in keys)

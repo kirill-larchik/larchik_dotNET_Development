@@ -54,7 +54,7 @@ namespace StudentSessionReportsLINQLibrary.Reports
         /// Sorts expelled students collection.
         /// </summary>
         /// <param name="sortState"></param>
-        public void SortExpelledStudents(ExpelledStudentSortState sortState)
+        public void SortReports(ExpelledStudentSortState sortState)
         {
             var keys = _reports.Keys.ToArray();
             foreach (var key in keys)

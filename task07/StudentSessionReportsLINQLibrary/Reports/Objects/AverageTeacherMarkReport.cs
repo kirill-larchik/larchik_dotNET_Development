@@ -9,10 +9,9 @@ namespace StudentSessionReportsLINQLibrary.Reports.Objects
     /// <summary>
     /// Describing a session report of student with average mark.
     /// </summary>
-    public class SessionReport
+    public class AverageTeacherMarkReport
     {
-        public string FullName { get; set; }
-        public string Group { get; set; }
+        public string TeacherName { get; set; }
         public double AverageMark { get; set; }
     }
 }

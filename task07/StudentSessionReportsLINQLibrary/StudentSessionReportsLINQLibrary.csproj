@@ -86,13 +86,22 @@
     <Compile Include="Data\Models\Specialty.cs" />
     <Compile Include="Data\StudentSessionReportsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\ExcelReport.cs" />
+    <Compile Include="Reports\AverageMarkDynamicReportCollection.cs" />
+    <Compile Include="Reports\AverageTeacherMarkReportCollection.cs" />
+    <Compile Include="Reports\Excel\AverageMarkDynamicReportExcel.cs" />
+    <Compile Include="Reports\Excel\ExcelReport.cs" />
+    <Compile Include="Reports\Excel\AverageGroupMarkReportExcel.cs" />
+    <Compile Include="Reports\Excel\SummaryMarkReportExcel.cs" />
     <Compile Include="Reports\ExpelledStudentReportCollection.cs" />
+    <Compile Include="Reports\Objects\AverageMarkDynamicReport.cs" />
+    <Compile Include="Reports\Objects\AverageSpecialtyMarkReport.cs" />
+    <Compile Include="Reports\Objects\AverageTeacherMarkReport.cs" />
     <Compile Include="Reports\ReportCollection.cs" />
     <Compile Include="Reports\Objects\ExpelledStudent.cs" />
-    <Compile Include="Reports\Objects\SessionReport.cs" />
+    <Compile Include="Reports\Objects\AverageGroupMarkReport.cs" />
     <Compile Include="Reports\Objects\SummaryMark.cs" />
-    <Compile Include="Reports\SessionResultReportCollection.cs" />
+    <Compile Include="Reports\AverageGroupMarkReportCollection.cs" />
+    <Compile Include="Reports\AverageSpecialtyMarkReportCollection.cs" />
     <Compile Include="Reports\SummaryMarkReportCollection.cs" />
   </ItemGroup>
   <ItemGroup>

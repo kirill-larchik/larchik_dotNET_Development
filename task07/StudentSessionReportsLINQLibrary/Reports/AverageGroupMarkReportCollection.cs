@@ -8,7 +8,7 @@ using StudentSessionReportsLINQLibrary.Data;
 
 namespace StudentSessionReportsLINQLibrary.Reports
 {
-    public enum SessionResultSortState
+    public enum AverageGroupMarkSortState
     {
         FullNameAsc,
         FullNameDesc,
@@ -21,13 +21,13 @@ namespace StudentSessionReportsLINQLibrary.Reports
     /// <summary>
     /// A session result report collection. 
     /// </summary>
-    public class SessionResultReportCollection : ReportCollection<int, List<SessionReport>>
+    public class AverageGroupMarkReportCollection : ReportCollection<int, List<AverageGroupMarkReport>>
     {
         /// <summary>
         /// Init a session result report collection.
         /// </summary>
         /// <param name="context"></param>
-        public SessionResultReportCollection(StudentSessionReportsContext context)
+        public AverageGroupMarkReportCollection(StudentSessionReportsContext context)
             : base(context)
         { }
 
@@ -46,29 +46,29 @@ namespace StudentSessionReportsLINQLibrary.Reports
                                      Mark = sr.Mark
                                  };
 
-            _reports = sessionReports.GroupBy(q => q.Session).ToDictionary(s => s.Key, s => s.GroupBy(g => new { FullName = g.FullName, Group = g.Group }).Select(x => new SessionReport { FullName = x.Key.FullName, Group = x.Key.Group, AverageMark = x.Average(m => m.Mark) }).ToList()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
+            _reports = sessionReports.GroupBy(q => q.Session).ToDictionary(s => s.Key, s => s.GroupBy(g => new { FullName = g.FullName, Group = g.Group }).Select(x => new AverageGroupMarkReport { FullName = x.Key.FullName, Group = x.Key.Group, AverageMark = x.Average(m => m.Mark) }).ToList()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
         }
 
         /// <summary>
         /// Sorts the session report collection.
         /// </summary>
         /// <param name="sortState"></param>
-        public void SortSessionReports(SessionResultSortState sortState)
+        public void SortReports(AverageGroupMarkSortState sortState)
         {
             var keys = _reports.Keys.ToArray();
             foreach (var key in keys)
             {
-                if (sortState == SessionResultSortState.GroupAsc)
+                if (sortState == AverageGroupMarkSortState.GroupAsc)
                     _reports[key] = _reports[key].OrderBy(q => q.Group).ToList();
-                if (sortState == SessionResultSortState.GroupDesc)
+                if (sortState == AverageGroupMarkSortState.GroupDesc)
                     _reports[key] = _reports[key].OrderByDescending(q => q.Group).ToList();
-                if (sortState == SessionResultSortState.FullNameAsc)
+                if (sortState == AverageGroupMarkSortState.FullNameAsc)
                     _reports[key] = _reports[key].OrderBy(q => q.FullName).ToList();
-                if (sortState == SessionResultSortState.FullNameDesc)
+                if (sortState == AverageGroupMarkSortState.FullNameDesc)
                     _reports[key] = _reports[key].OrderByDescending(q => q.FullName).ToList();
-                if (sortState == SessionResultSortState.AverageMarkAsc)
+                if (sortState == AverageGroupMarkSortState.AverageMarkAsc)
                     _reports[key] = _reports[key].OrderBy(q => q.AverageMark).ToList();
-                if (sortState == SessionResultSortState.AverageMarkDesc)
+                if (sortState == AverageGroupMarkSortState.AverageMarkDesc)
                     _reports[key] = _reports[key].OrderByDescending(q => q.AverageMark).ToList();
             }
         }

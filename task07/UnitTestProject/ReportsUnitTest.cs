@@ -19,7 +19,46 @@ namespace UnitTestProject
             StudentSessionReportsContext context = new StudentSessionReportsContext(connectionString);
 
             ExpelledStudentReportCollection collection = new ExpelledStudentReportCollection(context);
-            collection.SortExpelledStudents(sortState);
+            collection.SortReports(sortState);
+
+            Assert.IsTrue(collection.GetReports.Count != 0);
+        }
+
+        [DataTestMethod]
+        [DataRow(AverageSpecilatyMarkSortState.SpecilatyDesc)]
+        public void SetAverageSpecilatyMarkReports(AverageSpecilatyMarkSortState sortState)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString();
+            StudentSessionReportsContext context = new StudentSessionReportsContext(connectionString);
+
+            AverageSpecialtyMarkReportCollection collection = new AverageSpecialtyMarkReportCollection(context);
+            collection.SortReports(sortState);
+
+            Assert.IsTrue(collection.GetReports.Count != 0);
+        }
+
+        [DataTestMethod]
+        [DataRow(AverageTeacherMarkSortState.TeacherNameAsc)]
+        public void SetAverageTeacherMarkReports(AverageTeacherMarkSortState sortState)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString();
+            StudentSessionReportsContext context = new StudentSessionReportsContext(connectionString);
+
+            AverageTeacherMarkReportCollection collection = new AverageTeacherMarkReportCollection(context);
+            collection.SortReports(sortState);
+
+            Assert.IsTrue(collection.GetReports.Count != 0);
+        }
+
+        [DataTestMethod]
+        [DataRow(AverageMarkDynamicSortState.SubjectNameDesc)]
+        public void SetAverageMarkDynamicReports(AverageMarkDynamicSortState sortState)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["MSSqlServer"].ToString();
+            StudentSessionReportsContext context = new StudentSessionReportsContext(connectionString);
+
+            AverageMarkDynamicReportCollection collection = new AverageMarkDynamicReportCollection(context);
+            collection.SortReports(sortState);
 
             Assert.IsTrue(collection.GetReports.Count != 0);
         }
